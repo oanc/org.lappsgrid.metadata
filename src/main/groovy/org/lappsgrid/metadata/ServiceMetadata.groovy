@@ -36,8 +36,11 @@ class ServiceMetadata {
         this.schema = DEFAULT_SCHEMA_URL
     }
 
-    public ServiceMetadata(String json)
-    {
+    public ServiceMetadata(File file) {
+        this(file.text)
+    }
+
+    public ServiceMetadata(String json) {
         ServiceMetadata proxy = compressedMapper.readValue(json, ServiceMetadata)
 //        ServiceMetadata.getDeclaredFields().each { Field f ->
 //            if ((f.modifiers & Modifier.PUBLIC) != 0) {

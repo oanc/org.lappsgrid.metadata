@@ -48,6 +48,10 @@ class DataSourceMetadata {
         this.schema = DEFAULT_SCHEMA_URL
     }
 
+    public DataSourceMetadata(File file) {
+        this(file.text)
+    }
+    
     public DataSourceMetadata(String json)
     {
         DataSourceMetadata proxy = compressedMapper.readValue(json, DataSourceMetadata)
