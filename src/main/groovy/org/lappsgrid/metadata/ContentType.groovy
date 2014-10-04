@@ -22,6 +22,7 @@ import org.lappsgrid.discriminator.Uri
  * vocabulary used.  For example:
  *      application/xml; schema=gate
  *
+ * @deprecated ContentTypes should be replaced with their new URIs.
  * @author Keith Suderman
  */
 public class ContentType {

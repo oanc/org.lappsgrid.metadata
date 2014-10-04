@@ -20,6 +20,11 @@ public class IOSpecification {
     void addFormat(String format) {
         format << format
     }
+
+    void addAnnotation(String annotation) {
+        annotations << new AnnotationType(annotation)
+    }
+
     void add(ContentType type) {
         format << type
     }

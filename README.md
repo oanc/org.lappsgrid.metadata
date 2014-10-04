@@ -24,13 +24,14 @@ metadata.setVersion("1.0.0");
 metadata.setVendor("http://www.anc.org");
 metadata.setAllows("http://vocab.lappsgrid.org/ns/usage#any");
 metadata.setLicense("http://vocab.lappsgrid.org/ns/license/apache-2.0");
-IOSpecification io = metadata.getRequires();
-it.getFormat().add(
-io.getEncoding().add("UTF-8");
-io.getAnnotations().add("http://vocab.lappsgrid.org/Token");
-io = metadata.getProduces();
-io.getEncoding().add("UTF-8");
-io.getAnnotations().add("http://vocab.lappsgrid.org/Sentence")"
+IOSpecification requires = metadata.getRequires();
+requires.addFormat("http://vocab.lappsgrid.org/ns/media/xml#gate");
+requires.setEncoding("UTF-8");
+requires.addAnnotation("http://vocab.lappsgrid.org/Token");
+IOSpecification produces = metadata.getProduces();
+produces.addFormat("http://vocab.lappsgrid.org/ns/media/xml#gate");
+produces.setEncoding("UTF-8");
+produces.addAnnotation("http://vocab.lappsgrid.org/Sentence")"
 
 System.out.println(metadata.toPrettyJson());
 ```
