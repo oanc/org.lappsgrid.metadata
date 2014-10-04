@@ -25,10 +25,11 @@ metadata.setVendor("http://www.anc.org");
 metadata.setAllows("http://vocab.lappsgrid.org/ns/usage#any");
 metadata.setLicense("http://vocab.lappsgrid.org/ns/license/apache-2.0");
 IOSpecification io = metadata.getRequires();
-io.getFormat().add("UTF-8");
+it.getFormat().add(
+io.getEncoding().add("UTF-8");
 io.getAnnotations().add("http://vocab.lappsgrid.org/Token");
 io = metadata.getProduces();
-io.getFormat().add("UTF-8");
+io.getEncoding().add("UTF-8");
 io.getAnnotations().add("http://vocab.lappsgrid.org/Sentence")"
 
 System.out.println(metadata.toPrettyJson());

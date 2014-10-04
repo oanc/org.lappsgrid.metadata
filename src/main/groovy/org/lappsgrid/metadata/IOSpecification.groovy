@@ -17,6 +17,9 @@ public class IOSpecification {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<AnnotationType> annotations = []
 
+    void addFormat(String format) {
+        format << format
+    }
     void add(ContentType type) {
         format << type
     }
