@@ -4,7 +4,7 @@ org.lappsgrid.metadata
 Classes used to read and write LAPPS metadata.
 
 <b color='red'>Note:</b> currently these classes reside in the package `org.lappsgrid.experimental.lappsgrid`. They will be
-moved into the `org.lappsgrid.metadata' package after review.
+moved into the `org.lappsgrid.metadata` package after review.
 
 ## Maven
 
