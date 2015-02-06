@@ -17,21 +17,6 @@ import groovy.transform.CompileStatic
 class DataSourceMetadata {
     public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/datasource-schema-1.0.0.json'
 
-    // ObjectMapper instances are thread safe as long as we don't try to reconfigure
-    // them after they have been created.  Therefore we create two instances of
-    // ObjectMapper, one to pretty print the JSON and one that prints a compressed
-    // form of JSON.
-    private static final ObjectMapper compressedMapper
-    private static final ObjectMapper prettyMapper
-
-    static {
-        compressedMapper = new ObjectMapper()
-        compressedMapper.disable(SerializationFeature.INDENT_OUTPUT)
-
-        prettyMapper = new ObjectMapper()
-        prettyMapper.enable(SerializationFeature.INDENT_OUTPUT)
-    }
-
     @JsonProperty('$schema')
     String schema
     String name
@@ -47,39 +32,23 @@ class DataSourceMetadata {
     public DataSourceMetadata() {
         this.schema = DEFAULT_SCHEMA_URL
     }
-
-    public DataSourceMetadata(File file) {
-        this(file.text)
-    }
-    
-    public DataSourceMetadata(String json)
+//
+//    public DataSourceMetadata(File file) {
+//        this(file.text)
+//    }
+//
+    public DataSourceMetadata(Map map)
     {
-        DataSourceMetadata proxy = compressedMapper.readValue(json, DataSourceMetadata)
-        this.schema = proxy.schema
-        this.name = proxy.name
-        this.vendor = proxy.vendor
-        this.version = proxy.version
-        this.description = proxy.description
-        this.allow = proxy.allow
-        this.license = proxy.license
-        this.language = proxy.language
-        this.format = proxy.format
-        this.encoding = proxy.encoding
-    }
-
-    String toJson() {
-//        return new JsonBuilder(this).toString()
-        return compressedMapper.writeValueAsString(this)
-    }
-
-    String toPrettyJson() {
-//        return new JsonBuilder(this).toPrettyString()
-        return prettyMapper.writeValueAsString(this)
-    }
-
-    String toString()
-    {
-        return toPrettyJson()
+        this.schema = map.schema
+        this.name = map.name
+        this.vendor = map.vendor
+        this.version = map.version
+        this.description = map.description
+        this.allow = map.allow
+        this.license = map.license
+        this.language = (List) map.language
+        this.format = (List) map.format
+        this.encoding = map.encoding
     }
 
 }

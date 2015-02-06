@@ -17,54 +17,6 @@ class ServiceMetadata {
 
     public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/service-schema-1.0.0.json'
 
-    // ObjectMapper instances are thread safe as long as we don't try to reconfigure
-    // them after they have been created.  Therefore we create two instances of
-    // ObjectMapper, one to pretty print the JSON and one that prints a compressed
-    // form of JSON.
-    private static final ObjectMapper compressedMapper
-    private static final ObjectMapper prettyMapper
-
-    static {
-        compressedMapper = new ObjectMapper()
-        compressedMapper.disable(SerializationFeature.INDENT_OUTPUT)
-
-        prettyMapper = new ObjectMapper()
-        prettyMapper.enable(SerializationFeature.INDENT_OUTPUT)
-    }
-
-    public ServiceMetadata() {
-        this.schema = DEFAULT_SCHEMA_URL
-    }
-
-    public ServiceMetadata(File file) {
-        this(file.text)
-    }
-
-    public ServiceMetadata(String json) {
-        ServiceMetadata proxy = compressedMapper.readValue(json, ServiceMetadata)
-//        ServiceMetadata.getDeclaredFields().each { Field f ->
-//            if ((f.modifiers & Modifier.PUBLIC) != 0) {
-//                println "Found public field ${f.name}"
-//                Object fieldValue = f.get(proxy)
-//                if (fieldValue != null) {
-//                    println "Setting ${fieldValue}"
-//                    f.set(this, fieldValue)
-//                }
-//            }
-//        }
-        this.schema = proxy.schema
-        this.name = proxy.name
-        this.vendor = proxy.vendor
-        this.version = proxy.version
-        this.description = proxy.description
-        this.allow = proxy.allow
-        this.license = proxy.license
-        this.url = proxy.url
-        this.parameters = proxy.parameters
-        this.requires = proxy.requires
-        this.produces = proxy.produces
-    }
-
     /** The JSON schema that describes the JSON format. */
     @JsonProperty('$schema')
     String schema
@@ -114,49 +66,47 @@ class ServiceMetadata {
 
     /**
      * Output format specification.  The output specification consists of:
-     *  - the character encoding
-     *  - the language produced.
-     *  - the document format (ContentType)
-     *  - annotations produced.
+     * <ul>
+     * <li> the character encoding
+     * <li> the language produced.
+     * <li> the document format (ContentType)
+     * <li> annotations produced.
+     * </ul>
      */
     IOSpecification produces = new IOSpecification()
 
     /**
      * The input requirements of the service.  The input specification consists of:
-     *  - the character encoding
-     *  - the input language accepted
-     *  - the document format(s) (ContentTypes) accepted.
-     *  - required annotations.
+     * <ul>
+     * <li> the character encoding
+     * <li> the input language accepted
+     * <li> the document format(s) (ContentTypes) accepted.
+     * <li> required annotations.
+     * </ul>
      */
     IOSpecification requires = new IOSpecification()
 
-//    IOSpecification getRequires() {
-//        if (requires == null) {
-//            requires = new IOSpecification()
-//        }
-//        return requires
+    public ServiceMetadata() {
+        this.schema = DEFAULT_SCHEMA_URL
+    }
+//
+//    public ServiceMetadata(File file) {
+//        this(file.text)
 //    }
 //
-//    IOSpecification getProduces() {
-//        if (produces == null) {
-//            produces = new IOSpecification()
-//        }
-//        return produces
-//    }
 
-    String toJson() {
-//        return new JsonBuilder(this).toString()
-        return compressedMapper.writeValueAsString(this)
-    }
-
-    String toPrettyJson() {
-//        return new JsonBuilder(this).toPrettyString()
-        return prettyMapper.writeValueAsString(this)
-    }
-
-    String toString()
-    {
-        return toPrettyJson()
+    public ServiceMetadata(Map map) {
+        this.schema = map.schema
+        this.name = map.name
+        this.vendor = map.vendor
+        this.version = map.version
+        this.description = map.description
+        this.allow = map.allow
+        this.license = map.license
+        this.url = map.url
+        this.parameters = (List) map.parameters
+        this.requires = new IOSpecification((Map)map.requires)
+        this.produces = new IOSpecification((Map)map.produces)
     }
 
 }
