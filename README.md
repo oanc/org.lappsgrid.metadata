@@ -43,7 +43,7 @@ File file = ... /* The file containing the metadata in JSON. */
 ServiceMetadata metadata = new ServiceMetadata(file);
 System.out.println(metadata.getVendor());
 ```
-These is also a constructor that accepts a String object containing the JSON
+There is also a constructor that accepts a String object containing the JSON
 ```java
 String json = "{ ... }";
 ServiceMetadata metadata = new ServiceMetadata(json);

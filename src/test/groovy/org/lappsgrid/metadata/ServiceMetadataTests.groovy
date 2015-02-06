@@ -7,7 +7,7 @@ import static org.junit.Assert.*
 /**
  * @author Keith Suderman
  */
-class ServiceMetadataTests {
+class  ServiceMetadataTests {
 
     @Ignore
     void testDefaultSchema() {
