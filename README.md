@@ -1,7 +1,12 @@
 org.lappsgrid.metadata
 ======================
 
-Classes used to read and write LAPPS metadata.
+### Build Status
+
+[![Master Status](http://grid.anc.org:9080/travis/svg/oanc/org.lappsgrid.metadata?branch=master)](https://travis-ci.org/oanc/org.lappsgrid.metadata)
+[![Develop Status](http://grid.anc.org:9080/travis/svg/oanc/org.lappsgrid.metadata?branch=develop)](https://travis-ci.org/oanc/org.lappsgrid.metadata)
+
+Classes used to read and write LAPPS metadata returned by the `WebService.getMetadata()` method.
 
 <b color='red'>Note:</b> currently these classes reside in the package `org.lappsgrid.experimental.lappsgrid`. They will be
 moved into the `org.lappsgrid.metadata` package after review.
