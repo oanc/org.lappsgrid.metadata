@@ -16,7 +16,7 @@ moved into the `org.lappsgrid.metadata` package after review.
 ```xml
 <groupId>org.lappsgrid.experimental</groupId>
 <artifactId>metadata</artifactId>
-<version>1.0.0-SNAPSHOT</version>
+<version>1.0.0</version>
 ```
 
 ## Examples
