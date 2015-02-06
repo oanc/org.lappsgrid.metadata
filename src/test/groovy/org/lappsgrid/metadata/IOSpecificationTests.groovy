@@ -9,21 +9,27 @@ import static org.junit.Assert.*
  */
 class IOSpecificationTests {
 
+    final static String XML = 'application/xml'
+    final static String TEXT = 'text/plain'
+    final static String GATE = 'application/xml:format=gate'
+    final static String TOKEN = 'token'
+
     @Test
-    void test1() {
+    void specSatisfiesItself() {
         println "IOSpecificationTests.test1"
-        IOSpecification spec1 = newSpec('us-ascii', "en", ContentType.TEXT, AnnotationType.TOKEN)
+        IOSpecification spec1 = newSpec('us-ascii', "en", "application/text", "token")
         assertTrue spec1.satisfies(spec1)
     }
 
     @Test
     void test2() {
         println "IOSpecificationTests.test2"
-        def contentType = [ContentType.TEXT, ContentType.XML, ContentType.GATE]
-        IOSpecification required = newSpec(contentType, [AnnotationType.TOKEN])
-        IOSpecification spec1 = newSpec(ContentType.TEXT, AnnotationType.TOKEN)
-        IOSpecification spec2 = newSpec(ContentType.XML, AnnotationType.TOKEN)
-        IOSpecification spec3 = newSpec(ContentType.GATE, AnnotationType.TOKEN)
+//        def contentType = [ContentType.TEXT, ContentType.XML, ContentType.GATE]
+        def contentType = [TEXT, XML, GATE]
+        IOSpecification required = newSpec(contentType, [TOKEN])
+        IOSpecification spec1 = newSpec(TEXT, TOKEN)
+        IOSpecification spec2 = newSpec(XML, TOKEN)
+        IOSpecification spec3 = newSpec(GATE, TOKEN)
         assertTrue spec1.satisfies(required)
         assertTrue spec2.satisfies(required)
         assertTrue spec3.satisfies(required)
@@ -32,45 +38,49 @@ class IOSpecificationTests {
     @Test
     void test3() {
         println "IOSpecificationTests.test3"
-        def annotations = [AnnotationType.TOKEN, AnnotationType.POS, AnnotationType.SENTENCE]
-        IOSpecification required = newSpec(ContentType.XML, AnnotationType.TOKEN)
-        IOSpecification provided = newSpec([ContentType.XML], annotations)
+        def annotations = [TOKEN, 'pos', 's']
+        IOSpecification required = newSpec(XML, TOKEN)
+        IOSpecification provided = newSpec([XML], annotations)
         assertTrue provided.satisfies(required)
     }
 
     @Test
     void testEquals() {
         println "IOSpecificationTests.testEquals"
-        IOSpecification s1 = newSpec(ContentType.XML, AnnotationType.TOKEN)
-        IOSpecification s2 = newSpec(ContentType.XML, AnnotationType.TOKEN)
+        IOSpecification s1 = newSpec(XML, TOKEN)
+        IOSpecification s2 = newSpec(XML, TOKEN)
         assertTrue s1 == s1
         assertTrue s1 == s2
         assertTrue s2 == s1
 
     }
 
-    IOSpecification newSpec(String encoding, String language, ContentType contentType, AnnotationType annotationType) {
+    IOSpecification newSpec(String encoding, String language, String contentType, String annotationType) {
         IOSpecification spec = new IOSpecification()
         spec.encoding = encoding
-        spec.language = [ language ]
-        spec.add(contentType)
-        spec.add(annotationType)
+        spec.language << language
+        spec.format << contentType
+        spec.annotations << annotationType
+//        spec.add(contentType)
+//        spec.add(annotationType)
         return spec
     }
-    IOSpecification newSpec(ContentType contentType, AnnotationType annotationType) {
+    IOSpecification newSpec(String contentType, String annotationType) {
         IOSpecification spec = new IOSpecification()
         spec.encoding = "UTF-8"
         spec.language = [ "en" ]
-        spec.add(contentType)
-        spec.add(annotationType)
+        spec.format << contentType
+        spec.annotations << annotationType
+//        spec.add(contentType)
+//        spec.add(annotationType)
         return spec
     }
-    IOSpecification newSpec(List<ContentType> contentTypes, List<AnnotationType> annotationTypes) {
+    IOSpecification newSpec(List<String> contentTypes, List<String> annotationTypes) {
         IOSpecification spec = new IOSpecification()
         spec.encoding = "UTF-8"
         spec.language = [ "en" ]
-        spec.format = contentTypes
-        spec.annotations = annotationTypes
+        spec.format.addAll contentTypes
+        spec.annotations.addAll annotationTypes
         return spec
     }
 }

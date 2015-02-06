@@ -13,57 +13,79 @@ public class IOSpecification {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> language = []
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    List<ContentType> format = []
+    List<String> format = []
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    List<AnnotationType> annotations = []
+    List<String> annotations = []
+
+    public IOSpecification() {}
+
+    public IOSpecification(Map map) {
+        this.encoding = map.encoding
+        map.language?.each { language.add(it.toString()) }
+        map.format?.each { format << it.toString() }
+        map.annotations?.each { annotations << it.toString()}
+    }
 
     void addFormat(String format) {
         format << format
     }
 
+    void addFormats(List<String> formats)
+    {
+        format.addAll(formats)
+    }
+
+    void addFormats(String[] formats)
+    {
+        format.addAll(Arrays.asList(formats))
+    }
+
     void addAnnotation(String annotation) {
-        annotations << new AnnotationType(annotation)
+        annotations << annotation
     }
 
-    void add(ContentType type) {
-        format << type
+    void addAnnotations(String[] annotation) {
+        annotations.addAll(Arrays.asList(annotation))
     }
 
-    void add(AnnotationType type) {
-        annotations << type
-    }
+//    void add(ContentType type) {
+//        format << type
+//    }
 
-    void add(String language) {
+//    void add(AnnotationType type) {
+//        annotations << type
+//    }
+
+    void addLanguage(String language) {
         this.language << language
     }
 
-    void add(String[] languages) {
-        this.language.addAll(languages)
+    void addLanguages(String[] languages) {
+        //this.language.addAll(languages)
+        for (String lang : languages) {
+            this.language << lang
+        }
     }
 
-    boolean satisfies(IOSpecification required) {
-        if (required.encoding && this.encoding != required.encoding) {
-            println "Encodings do not match"
-           return false
-        }
-        def intersection = language.intersect(required.language)
-        if (intersection.size() == 0) {
-            println "Languages do not match"
-            return false
-        }
-
-        intersection = format.intersect(required.format)
-        if (intersection.size() == 0) {
-            println "Formats do not match"
-            return false
-        }
-        intersection = annotations.intersect(required.annotations)
-        if (intersection.size() != required.annotations.size()) {
-            println "Annotation types not satisfied."
-            return false
-        }
-        return true
-    }
+//    boolean satisfies(IOSpecification required) {
+//        if (required.encoding && this.encoding != required.encoding) {
+//           return false
+//        }
+//        def intersection = language.intersect(required.language)
+//        if (intersection.size() == 0) {
+//            return false
+//        }
+//
+//        intersection = format.intersect(required.format)
+//        if (intersection.size() == 0) {
+//            return false
+//        }
+//        intersection = annotations.intersect(required.annotations)
+//        if (intersection.size() != required.annotations.size()) {
+//            return false
+//        }
+//        return true
+//    }
 
     boolean equals(Object other) {
         if (other instanceof IOSpecification) {
@@ -81,12 +103,10 @@ public class IOSpecification {
     }
     private <T> boolean subsumes(List<T> list1, List<T> list2)
     {
-//        println "${list1} subsumes ${list2}"
         Iterator<T> it = list2.iterator();
         while (it.hasNext()) {
             T t = it.next()
             if (!list1.contains(t)) {
-//                println "List1 does not contain ${t}"
                 return false;
             }
         }

@@ -16,7 +16,7 @@ moved into the `org.lappsgrid.metadata` package after review.
 ```xml
 <groupId>org.lappsgrid.experimental</groupId>
 <artifactId>metadata</artifactId>
-<version>1.0.0-SNAPSHOT</version>
+<version>1.0.0</version>
 ```
 
 ## Examples
@@ -48,7 +48,7 @@ File file = ... /* The file containing the metadata in JSON. */
 ServiceMetadata metadata = new ServiceMetadata(file);
 System.out.println(metadata.getVendor());
 ```
-These is also a constructor that accepts a String object containing the JSON
+There is also a constructor that accepts a String object containing the JSON
 ```java
 String json = "{ ... }";
 ServiceMetadata metadata = new ServiceMetadata(json);
