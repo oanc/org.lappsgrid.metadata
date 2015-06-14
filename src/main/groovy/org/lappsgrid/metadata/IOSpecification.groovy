@@ -27,7 +27,7 @@ public class IOSpecification {
     }
 
     void addFormat(String format) {
-        format << format
+        this.format.add(format)
     }
 
     void addFormats(List<String> formats)
@@ -101,12 +101,29 @@ public class IOSpecification {
         }
         return false
     }
+
+    boolean satisfies(IOSpecification required) {
+        return this.encoding == required.encoding &&
+                subsumes("language", this.language, required.language) &&
+                subsumes("format", this.format, required.format) &&
+                subsumes("annotations", required.annotations, this.annotations)
+    }
+
+    private <T> boolean subsumes(String type, List<T> list1, List<T> list2) {
+        if (!subsumes(list1, list2)) {
+            println "Subsumes failed for $type"
+            return false
+        }
+        return true
+    }
+
     private <T> boolean subsumes(List<T> list1, List<T> list2)
     {
-        Iterator<T> it = list2.iterator();
+        Iterator<T> it = list1.iterator();
         while (it.hasNext()) {
             T t = it.next()
-            if (!list1.contains(t)) {
+            if (!list2.contains(t)) {
+                println "Required does not contain $t"
                 return false;
             }
         }

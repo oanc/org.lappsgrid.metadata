@@ -55,6 +55,17 @@ class IOSpecificationTests {
 
     }
 
+    @Test
+    void testAddFormat() {
+        IOSpecification spec = new IOSpecification();
+        spec.addFormat("utf-8");
+        assertTrue 1 == spec.format.size()
+        assertTrue "utf-8" == spec.format[0]
+        spec.addFormat("ascii")
+        assertTrue 2 == spec.format.size()
+        assertTrue "ascii" == spec.format[1]
+    }
+
     IOSpecification newSpec(String encoding, String language, String contentType, String annotationType) {
         IOSpecification spec = new IOSpecification()
         spec.encoding = encoding
