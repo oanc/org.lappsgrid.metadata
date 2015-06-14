@@ -104,9 +104,9 @@ public class IOSpecification {
 
     boolean satisfies(IOSpecification required) {
         return this.encoding == required.encoding &&
-                subsumes("language", this.language, required.language) &&
-                subsumes("format", this.format, required.format) &&
-                subsumes("annotations", required.annotations, this.annotations)
+                subsumes(this.language, required.language) &&
+                subsumes(this.format, required.format) &&
+                subsumes(required.annotations, this.annotations)
     }
 
     private <T> boolean subsumes(String type, List<T> list1, List<T> list2) {
