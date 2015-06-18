@@ -45,6 +45,28 @@ class IOSpecificationTests {
     }
 
     @Test
+    void test4() {
+        println "IOSpecificationTests.test4"
+        IOSpecification provided = newSpec(GATE, TOKEN)
+        IOSpecification required = newSpec(GATE, TOKEN)
+        assertTrue provided.satisfies(required);
+    }
+
+    @Test
+    void testGateTokenizerSplitter() {
+        println "IOSpecificationTests.testGateTokenizerSplitter"
+        IOSpecification tokenizer = new IOSpecification()
+        tokenizer.addAnnotation(TOKEN)
+        tokenizer.addFormat(GATE)
+        tokenizer.setEncoding("UTF-8")
+
+        IOSpecification splitter = new IOSpecification()
+        splitter.addFormat(GATE)
+        splitter.addAnnotation(TOKEN)
+        assertTrue(tokenizer.satisfies(splitter))
+    }
+
+    @Test
     void testEquals() {
         println "IOSpecificationTests.testEquals"
         IOSpecification s1 = newSpec(XML, TOKEN)
