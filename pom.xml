@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.lappsgrid.experimental</groupId>
     <artifactId>metadata</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>LAPPS Service Metadata</name>
     <packaging>jar</packaging>
     <build>
