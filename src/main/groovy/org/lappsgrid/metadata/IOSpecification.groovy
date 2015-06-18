@@ -22,7 +22,7 @@ public class IOSpecification {
     public IOSpecification(Map map) {
         this.encoding = map.encoding
         map.language?.each { language.add(it.toString()) }
-        map.format?.each { format << it.toString() }
+        map.format?.each { format.add(it.toString()) }
         map.annotations?.each { annotations << it.toString()}
     }
 
@@ -41,7 +41,7 @@ public class IOSpecification {
     }
 
     void addAnnotation(String annotation) {
-        annotations << annotation
+        annotations.add(annotation)
     }
 
     void addAnnotations(String[] annotation) {
@@ -57,13 +57,13 @@ public class IOSpecification {
 //    }
 
     void addLanguage(String language) {
-        this.language << language
+        this.language.add(language)
     }
 
     void addLanguages(String[] languages) {
         //this.language.addAll(languages)
         for (String lang : languages) {
-            this.language << lang
+            this.language.add(lang)
         }
     }
 
@@ -103,8 +103,14 @@ public class IOSpecification {
     }
 
     boolean satisfies(IOSpecification required) {
-        return this.encoding == required.encoding &&
-                subsumes(this.language, required.language) &&
+//        return this.encoding == required.encoding &&
+//                subsumes(this.language, required.language) &&
+//                subsumes(this.format, required.format) &&
+//                subsumes(required.annotations, this.annotations)
+        if (required.encoding && this.encoding != required.encoding) {
+            return false;
+        }
+        return subsumes(this.language, required.language) &&
                 subsumes(this.format, required.format) &&
                 subsumes(required.annotations, this.annotations)
     }
