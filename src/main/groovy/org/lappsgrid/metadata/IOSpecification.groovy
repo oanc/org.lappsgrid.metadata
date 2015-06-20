@@ -133,11 +133,18 @@ public class IOSpecification {
         return false
     }
 
+    /**
+     * Returns true if this IOSpecification satisfies the required IOSpecification.
+     *
+     * An IOSpecification {@code A} satisfies another IOSpecification @{code R} <i>iff</i>
+     * <ul>
+     *     <li>{@code A} produces a character encoding required by {@code R},</li>
+     *     <li>{@code A} produces a language required by {@code R}, </li>
+     *     <li>{@code A} produces a format required by {@code R}, and</li>
+     *     <li>{@code A} produces all of the annotations required by {@code R}</li>
+     * </ul>
+     */
     boolean satisfies(IOSpecification required) {
-//        return this.encoding == required.encoding &&
-//                subsumes(this.language, required.language) &&
-//                subsumes(this.format, required.format) &&
-//                subsumes(required.annotations, this.annotations)
         if (required.encoding && this.encoding != required.encoding) {
             return false;
         }
