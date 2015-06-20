@@ -3,8 +3,8 @@ org.lappsgrid.metadata
 
 ### Build Status
 
-[![Master Status](http://grid.anc.org:9080/travis/svg/oanc/org.lappsgrid.metadata?branch=master)](https://travis-ci.org/oanc/org.lappsgrid.metadata)
-[![Develop Status](http://grid.anc.org:9080/travis/svg/oanc/org.lappsgrid.metadata?branch=develop)](https://travis-ci.org/oanc/org.lappsgrid.metadata)
+[![Master Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.metadata?branch=master)](https://travis-ci.org/lapps/org.lappsgrid.metadata)
+[![Develop Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.metadata?branch=develop)](https://travis-ci.org/lapps/org.lappsgrid.metadata)
 
 Classes used to read and write LAPPS metadata returned by the `WebService.getMetadata()` method.
 

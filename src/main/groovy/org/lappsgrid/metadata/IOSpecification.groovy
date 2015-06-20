@@ -1,19 +1,50 @@
+/*-
+ * Copyright 2015 The Language Application Grid
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 package org.lappsgrid.metadata
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import groovy.transform.CompileStatic
 
 /**
+ * Defines the sets of annotations, and their properties, exchanged by Lapps
+ * web services.
+ *
+ * A service on the Lapps Grid must specify the annotations it requires
+ * to perform its job, as well as the languages, formats, and character
+ * encodings it understands.  Each service must also specify the annotations,
+ * languages, formats, and character encodings it produces.
+ *
  * @author Keith Suderman
  */
 @CompileStatic
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class IOSpecification {
-    String encoding //= 'UTF-8'
+    /** The characer encoding, defaults to UTF-8 */
+    String encoding
+
+    /** A list of ISO language codes. */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> language = []
+
+    /** A list of URI from the Lapps vocabulary specifying the document format. */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> format = []
+
+    /** A list of URI from the Lapps vocabulary specifying the annotation types. */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> annotations = []
 
@@ -102,11 +133,18 @@ public class IOSpecification {
         return false
     }
 
+    /**
+     * Returns true if this IOSpecification satisfies the required IOSpecification.
+     *
+     * An IOSpecification {@code A} satisfies another IOSpecification @{code R} <i>iff</i>
+     * <ul>
+     *     <li>{@code A} produces a character encoding required by {@code R},</li>
+     *     <li>{@code A} produces a language required by {@code R}, </li>
+     *     <li>{@code A} produces a format required by {@code R}, and</li>
+     *     <li>{@code A} produces all of the annotations required by {@code R}</li>
+     * </ul>
+     */
     boolean satisfies(IOSpecification required) {
-//        return this.encoding == required.encoding &&
-//                subsumes(this.language, required.language) &&
-//                subsumes(this.format, required.format) &&
-//                subsumes(required.annotations, this.annotations)
         if (required.encoding && this.encoding != required.encoding) {
             return false;
         }
