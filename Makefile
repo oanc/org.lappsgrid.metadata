@@ -27,9 +27,9 @@ site:
 	if [ -e target/apidocs ] ; then rm -rf target/apidocs ; fi
 	$(GROOVYDOC) "Lappsgrid Metadata"
 	git checkout gh-pages
-	rm *.html *.ico *.gif
+	rm -f *.html *.ico *.gif
 	rm -rf org
-	git commit -a -m "Removed old files."
+	git commit -m "Removed old files."
 	cp -r target/apidocs/* .	
 	git add *.html *.ico *.gif org
 	git commit -a -m "Updated gh-pages."
