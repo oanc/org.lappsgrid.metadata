@@ -25,6 +25,13 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.transform.CompileStatic
 
 /**
+ * The {@code DataSourceMetadata} class corresponds to JSON returned by calls to
+ * {@link org.lappsgrid.api.DataSource#getMetadata}.
+ *
+ * Typically Lapp services will either generate the metadata at compile time or at
+ * runtime when the service is first launched.  The metadata can then be cached
+ * until {@code getMetadata()} is called.
+ *
  * @author Keith Suderman
  */
 @CompileStatic
@@ -33,26 +40,53 @@ import groovy.transform.CompileStatic
 class DataSourceMetadata {
     public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/datasource-schema-1.0.0.json'
 
+    /** The JSON-LD schema that defines the metadata layout.  This will be provided
+     * automatically by the framework, but can be overridden if needed.
+     */
     @JsonProperty('$schema')
     String schema
+
+    /** The name of the service.  For Java services this is typically the fully
+     * qualified class name of the class implementing the service and will be filled
+     * in automatically by the framework.
+     */
     String name
+
+    /** A URI defining the organization providing the service. */
     String vendor
+
+    /** The service version.  For Maven projects the version number will be parsed
+     * from the pom.xml file.
+     */
     String version
+
+    /** A brief description of the service. */
     String description
+
+    /** A URI from the Lapps vocabulary defining allowable usages.  Defaults to any. */
     String allow
+
+    /** A URI from the Lapps vocabulary defining the software license.  Defaults to
+     * the Apache 2.0 license.
+     */
     String license
+
+    /** Languages available from the data source. */
     List<String> language
+
+    /** Formats available from the data source.  The data format should be a URI
+     * from the Lapps vocabulary.
+     */
     List<String> format
+
+    /** The character encoding for documents from the data source. Default is UTF-8 */
+
     String encoding
 
     public DataSourceMetadata() {
         this.schema = DEFAULT_SCHEMA_URL
     }
-//
-//    public DataSourceMetadata(File file) {
-//        this(file.text)
-//    }
-//
+
     public DataSourceMetadata(Map map)
     {
         this.schema = map.schema

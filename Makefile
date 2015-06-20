@@ -20,12 +20,12 @@ snapshot:
 
 docs:
 	if [ -e target/apidocs ] ; then rm -rf target/apidocs ; fi
-	$(GROOVYDOC) "Lappsgrid Serialization"
+	$(GROOVYDOC) "Lappsgrid Metadata"
 
 site:
 	git stash
 	if [ -e target/apidocs ] ; then rm -rf target/apidocs ; fi
-	$(GROOVYDOC) "Lappsgrid Serialization"
+	$(GROOVYDOC) "Lappsgrid Metadata"
 	git checkout gh-pages
 	rm *.html *.ico *.gif
 	rm -rf org

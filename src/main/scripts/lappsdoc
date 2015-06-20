@@ -21,5 +21,6 @@ ant.groovydoc(
         link(packages:"org.apache.tools.ant.",         href:"http://docs.groovy-lang.org/docs/ant/api/")
         link(packages:"org.junit.,junit.framework.",   href:"http://junit.org/apidocs/")
         link(packages:"org.codehaus.gmaven.",          href:"http://groovy.github.io/gmaven/apidocs/")
+        link(packages:"org.lappsgrid.api.",  href:"http://lapps.github.io/org.lappsgrid.api")
         link(packages:"org.lappsgrid.serialization.",  href:"http://lapps.github.io/org.lappsgrid.serialization")
 }
