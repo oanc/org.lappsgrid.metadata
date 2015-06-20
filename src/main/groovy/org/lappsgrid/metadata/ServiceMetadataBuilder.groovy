@@ -20,7 +20,19 @@ import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.Serializer
 import static org.lappsgrid.discriminator.Discriminators.Uri
 
-/**
+/** Implements the Builder pattern for generating {@link ServiceMetadata}.
+ * <code>
+ *     <pre>
+ *         ServiceMetadata md = new ServiceMetadataBuilder()
+ *                                  .version("2.0.0")
+ *                                  .vendor("http://example.com")
+ *                                  .produces("http://vocab.lappsgrid.org/Token")
+ *                                  .build();
+ *     </pre>
+ * </code>
+ * The {@link ServiceMetadataBuilder#toString} method can be used to obtain the
+ * JSON representation rather than the {@link ServiceMetadata} object itself.
+ *
  * @author Keith Suderman
  */
 class ServiceMetadataBuilder {

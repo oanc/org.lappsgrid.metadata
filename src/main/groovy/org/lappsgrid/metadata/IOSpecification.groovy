@@ -20,16 +20,31 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import groovy.transform.CompileStatic
 
 /**
+ * Defines the sets of annotations, and their properties, exchanged by Lapps
+ * web services.
+ *
+ * A service on the Lapps Grid must specify the annotations it requires
+ * to perform its job, as well as the languages, formats, and character
+ * encodings it understands.  Each service must also specify the annotations,
+ * languages, formats, and character encodings it produces.
+ *
  * @author Keith Suderman
  */
 @CompileStatic
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class IOSpecification {
-    String encoding //= 'UTF-8'
+    /** The characer encoding, defaults to UTF-8 */
+    String encoding
+
+    /** A list of ISO language codes. */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> language = []
+
+    /** A list of URI from the Lapps vocabulary specifying the document format. */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> format = []
+
+    /** A list of URI from the Lapps vocabulary specifying the annotation types. */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> annotations = []
 

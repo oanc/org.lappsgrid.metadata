@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.transform.CompileStatic
 
 /**
- * The {@code DataSourceMetadata} class corresponds to JSON returned by calls to
+ * The JSON objects returned by calls to
  * {@link org.lappsgrid.api.DataSource#getMetadata}.
  *
  * Typically Lapp services will either generate the metadata at compile time or at

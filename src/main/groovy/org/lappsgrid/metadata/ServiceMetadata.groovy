@@ -22,8 +22,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.transform.CompileStatic
-
 /**
+ * The JSON objects returned by calls to
+ * {@link org.lappsgrid.api.ProcessingService#getMetadata}.
+ *
+ * Typically Lapp services will either generate this metadata at compile time or at
+ * runtime when the service is first launched.  The metadata can then be cached
+ * until {@code getMetadata()} is called.
+ *
  * @author Keith Suderman
  */
 @CompileStatic
