@@ -1,5 +1,5 @@
 BRANCH=$(shell git branch | grep \* | cut -d\  -f2)
-GROOVYDOC=src/test/resources/lappsdoc
+GROOVYDOC=src/main/scripts/lappsdoc
 
 help:
 	@echo "Help is needed..."
