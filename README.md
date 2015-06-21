@@ -14,9 +14,11 @@ moved into the `org.lappsgrid.metadata` package after review.
 ## Maven
 
 ```xml
-<groupId>org.lappsgrid.experimental</groupId>
-<artifactId>metadata</artifactId>
-<version>1.0.0</version>
+<dependency>
+    <groupId>org.lappsgrid</groupId>
+    <artifactId>metadata</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 ## Examples
