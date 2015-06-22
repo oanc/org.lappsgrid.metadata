@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.lappsgrid</groupId>
     <artifactId>metadata</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
     <name>LAPPS Service Metadata</name>
     <packaging>jar</packaging>
     <build>
@@ -58,7 +58,7 @@
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>2.4.3</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.lappsgrid</groupId>

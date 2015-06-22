@@ -101,4 +101,17 @@ class DataSourceMetadata {
         this.encoding = map.encoding
     }
 
+    public void addLanguage(String lang) {
+        if (language == null) {
+            language = new ArrayList<String>();
+        }
+        language.add(lang);
+    }
+
+    public void addFormat(String f) {
+        if (format == null) {
+            format = new ArrayList<>();
+        }
+        format.add(f);
+    }
 }
