@@ -79,6 +79,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <destinationDirectory>${project.reporting.outputDirectory}/groovydoc</destinationDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -116,6 +119,9 @@
                 <groupId>com.bluetrainsoftware.maven</groupId>
                 <artifactId>groovydoc-maven-plugin</artifactId>
                 <version>1.3</version>
+                <configuration>
+                    <destinationDirectory>${project.reporting.outputDirectory}/groovydoc</destinationDirectory>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
