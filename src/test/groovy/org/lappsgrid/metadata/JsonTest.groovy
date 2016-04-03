@@ -7,7 +7,7 @@ import static org.junit.Assert.*
  * @author Keith Suderman
  */
 @Ignore
-class JsonTests {
+class JsonTest {
 
     @Test
     void displayJson() {

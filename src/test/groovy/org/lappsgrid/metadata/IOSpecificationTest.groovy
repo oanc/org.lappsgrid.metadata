@@ -7,7 +7,7 @@ import static org.junit.Assert.*
 /**
  * @author Keith Suderman
  */
-class IOSpecificationTests {
+class IOSpecificationTest {
 
     final static String XML = 'application/xml'
     final static String TEXT = 'text/plain'
@@ -16,14 +16,14 @@ class IOSpecificationTests {
 
     @Test
     void specSatisfiesItself() {
-        println "IOSpecificationTests.test1"
+        println "IOSpecificationTest.test1"
         IOSpecification spec1 = newSpec('us-ascii', "en", "application/text", "token")
         assertTrue spec1.satisfies(spec1)
     }
 
     @Test
     void test2() {
-        println "IOSpecificationTests.test2"
+        println "IOSpecificationTest.test2"
 //        def contentType = [ContentType.TEXT, ContentType.XML, ContentType.GATE]
         def contentType = [TEXT, XML, GATE]
         IOSpecification required = newSpec(contentType, [TOKEN])
@@ -37,7 +37,7 @@ class IOSpecificationTests {
 
     @Test
     void test3() {
-        println "IOSpecificationTests.test3"
+        println "IOSpecificationTest.test3"
         def annotations = [TOKEN, 'pos', 's']
         IOSpecification required = newSpec(XML, TOKEN)
         IOSpecification provided = newSpec([XML], annotations)
@@ -46,7 +46,7 @@ class IOSpecificationTests {
 
     @Test
     void test4() {
-        println "IOSpecificationTests.test4"
+        println "IOSpecificationTest.test4"
         IOSpecification provided = newSpec(GATE, TOKEN)
         IOSpecification required = newSpec(GATE, TOKEN)
         assertTrue provided.satisfies(required);
@@ -54,7 +54,7 @@ class IOSpecificationTests {
 
     @Test
     void testGateTokenizerSplitter() {
-        println "IOSpecificationTests.testGateTokenizerSplitter"
+        println "IOSpecificationTest.testGateTokenizerSplitter"
         IOSpecification tokenizer = new IOSpecification()
         tokenizer.addAnnotation(TOKEN)
         tokenizer.addFormat(GATE)
@@ -68,7 +68,7 @@ class IOSpecificationTests {
 
     @Test
     void testEquals() {
-        println "IOSpecificationTests.testEquals"
+        println "IOSpecificationTest.testEquals"
         IOSpecification s1 = newSpec(XML, TOKEN)
         IOSpecification s2 = newSpec(XML, TOKEN)
         assertTrue s1 == s1
