@@ -15,6 +15,12 @@
 # 4. Creates the Maven site and pushes this to the gh_pages branch in the
 #    project repository.
 
+if [ -z "$TRAVIS_BRANCH" ] ; then
+    echo "WARNING: This script should only be run by the Travis integration server."
+    exit 1
+fi
+exit
+
 # 1. Download the keys,
 wget http://www.lappsgrid.org/keys/secring.gpg.enc
 wget http://www.lappsgrid.org/keys/pubring.gpg.enc
