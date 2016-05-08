@@ -7,7 +7,7 @@ import static org.lappsgrid.discriminator.Discriminators.Uri
 /**
  * @author Keith Suderman
  */
-class BuilderTests {
+class BuilderTest {
 
     @Test
     void testTokenizerSplitter() {
