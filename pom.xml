@@ -35,8 +35,8 @@
         <system>travis</system>
     </ciManagement>
     <properties>
-        <lapps.serialization.version>2.2.0</lapps.serialization.version>
-        <lapps.discriminator.version>2.2.1</lapps.discriminator.version>
+        <lapps.serialization.version>2.3.2-SNAPSHOT</lapps.serialization.version>
+        <lapps.discriminator.version>2.3.1-SNAPSHOT</lapps.discriminator.version>
     </properties>
     <build>
         <plugins>
