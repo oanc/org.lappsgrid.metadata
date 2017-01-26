@@ -3,7 +3,6 @@ branches:
   only:
   - master
   - develop
-  - 1.1.0
 env:
   global:
   - secure: TayEP5vUCUMB9RWOai2vvgyMkiZwEBfUG/lluEJCO01uTjLDvT46G7HtCKbV4IXL1oALtVXpiGvWc9BVPAafLyAcq3DU4wCt3ETadInTYhs+xQFDK7xc9shF58KSQKwwPRdzY2z4FWt/BrylauBwQf0fCMZN1ioPD0MdLaBCe1w=
