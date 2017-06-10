@@ -77,6 +77,11 @@ class ServiceMetadataBuilder {
         return this
     }
 
+    ServiceMetadataBuilder produces(String[] types) {
+        metadata.produces.addAnnotations(types)
+        return this
+    }
+
     ServiceMetadataBuilder produceFormat(String format) {
         metadata.produces.addFormat(format)
         return this
@@ -110,6 +115,11 @@ class ServiceMetadataBuilder {
 
     ServiceMetadataBuilder require(String type) {
         metadata.requires.addAnnotation(type)
+        return this
+    }
+
+    ServiceMetadataBuilder requires(String[] types) {
+        metadata.requires.addAnnotations(types)
         return this
     }
 
