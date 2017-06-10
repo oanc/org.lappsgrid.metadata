@@ -35,7 +35,7 @@ import groovy.transform.CompileStatic
 @CompileStatic
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder(["schema","name","version","description","vendor","allow","license","url", "parameters", "requires", "produces"])
-class ServiceMetadata {
+class  ServiceMetadata {
 
     public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/service-schema-1.0.0.json'
 
