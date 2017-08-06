@@ -23,6 +23,8 @@ import com.fasterxml.jackson.annotation.JsonValue
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.transform.CompileStatic
+import org.lappsgrid.discriminator.Discriminators
+import org.lappsgrid.serialization.Data
 
 /**
  * The JSON objects returned by calls to
@@ -114,4 +116,9 @@ class DataSourceMetadata {
         }
         format.add(f);
     }
+
+    String toString() {
+        return new Data(Discriminators.Uri.META, this).asPrettyJson()
+    }
+
 }

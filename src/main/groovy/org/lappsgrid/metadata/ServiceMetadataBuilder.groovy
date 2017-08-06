@@ -160,6 +160,6 @@ class ServiceMetadataBuilder {
     String toString() {
         Data<ServiceMetadata> data = new Data<>(Uri.META, metadata)
         metadata = null
-        return data.asJson()
+        return data.asPrettyJson()
     }
 }

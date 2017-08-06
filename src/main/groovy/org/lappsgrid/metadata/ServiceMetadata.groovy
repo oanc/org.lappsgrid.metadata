@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.transform.CompileStatic
+import org.lappsgrid.discriminator.Discriminators
+import org.lappsgrid.serialization.Data
+
 /**
  * The JSON objects returned by calls to
  * {@link org.lappsgrid.api.ProcessingService#getMetadata}.
@@ -129,6 +132,10 @@ class  ServiceMetadata {
         this.parameters = (List) map.parameters
         this.requires = new IOSpecification((Map)map.requires)
         this.produces = new IOSpecification((Map)map.produces)
+    }
+
+    String toString() {
+        return new Data<>(Discriminators.Uri.META, this).asPrettyJson()
     }
 
 }
