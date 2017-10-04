@@ -12,7 +12,7 @@ class BuilderTest {
     @Test
     void testTokenizerSplitter() {
         ServiceMetadata tokenizer = new ServiceMetadataBuilder()
-            .allow(Uri.ANY)
+            .allow(Uri.ALL)
             .name("GATE Tokenizer")
             .vendor("http://www.anc.org")
             .version("2.0.0")
@@ -25,7 +25,7 @@ class BuilderTest {
             .produce(Uri.TOKEN)
             .build();
         ServiceMetadata splitter = new ServiceMetadataBuilder()
-            .allow(Uri.ANY)
+            .allow(Uri.ALL)
             .name("GATE SentenceSplitter")
             .vendor("http://www.anc.org")
             .version("2.0.0")
