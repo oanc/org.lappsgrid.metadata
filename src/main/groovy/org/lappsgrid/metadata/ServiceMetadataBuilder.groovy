@@ -71,6 +71,10 @@ class ServiceMetadataBuilder {
         metadata.license = license
         return this
     }
+    ServiceMetadataBuilder licenseDesc(String description) {
+        metadata.licenseDesc = description
+        return this
+    }
 
     ServiceMetadataBuilder produce(String type) {
         metadata.produces.addAnnotation(type)

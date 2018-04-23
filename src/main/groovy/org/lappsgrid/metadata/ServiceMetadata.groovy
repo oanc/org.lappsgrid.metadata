@@ -37,7 +37,7 @@ import org.lappsgrid.serialization.Data
  */
 @CompileStatic
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder(["schema","name","version","description","vendor","allow","license","url", "parameters", "requires", "produces"])
+@JsonPropertyOrder(["schema","name","version","description","vendor","allow","license", "licenseDesc","url", "parameters", "requires", "produces"])
 class  ServiceMetadata {
 
     public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/service-schema-1.0.0.json'
@@ -77,6 +77,11 @@ class  ServiceMetadata {
      * The license for this service.
      */
     String license
+
+    /**
+     * The license of the wrapped tool, if any, in restructuredtext markup format
+     */
+    String licenseDesc
 
     /**
      * The full URL used to invoke the service.
@@ -128,6 +133,7 @@ class  ServiceMetadata {
         this.description = map.description
         this.allow = map.allow
         this.license = map.license
+        this.licenseDesc = map.licenseDesc
         this.url = map.url
         this.parameters = (List) map.parameters
         this.requires = new IOSpecification((Map)map.requires)
