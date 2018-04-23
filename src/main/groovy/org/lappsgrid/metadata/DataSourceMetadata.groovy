@@ -40,7 +40,7 @@ import org.lappsgrid.serialization.Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder(["schema","name","version","description","vendor","allow","license", "licenseDesc"])
 class DataSourceMetadata {
-    public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/datasource-schema-1.0.0.json'
+    public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/latest/datasource-schema.json'
 
     /** The JSON-LD schema that defines the metadata layout.  This will be provided
      * automatically by the framework, but can be overridden if needed.
