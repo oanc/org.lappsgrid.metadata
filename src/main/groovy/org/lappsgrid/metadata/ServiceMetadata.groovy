@@ -40,7 +40,7 @@ import org.lappsgrid.serialization.Data
 @JsonPropertyOrder(["schema","name","version","description","vendor","allow","license", "licenseDesc","url", "parameters", "requires", "produces"])
 class  ServiceMetadata {
 
-    public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/latest/metadata-schema.json'
+    public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/service-schema-1.0.0.json'
 
     /** The JSON schema that describes the JSON format. */
     @JsonProperty('$schema')
