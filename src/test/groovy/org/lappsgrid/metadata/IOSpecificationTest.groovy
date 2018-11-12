@@ -88,6 +88,15 @@ class IOSpecificationTest {
         assertTrue "ascii" == spec.format[1]
     }
 
+    @Test
+    void testTagSet() {
+        IOSpecification spec = newSpec(TEXT, TOKEN);
+        spec.addTagSet(TOKEN, "upenn")
+        assertEquals(spec.tagSets.size(), 1)
+        assertEquals(spec.tagSets.containsKey(TOKEN), true)
+        assertEquals(spec.tagSets.get(TOKEN), "upenn")
+    }
+
     IOSpecification newSpec(String encoding, String language, String contentType, String annotationType) {
         IOSpecification spec = new IOSpecification()
         spec.encoding = encoding

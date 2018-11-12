@@ -48,6 +48,10 @@ public class IOSpecification {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> annotations = []
 
+    /** A map from annotation type URIs to tagset type URIs if a tagset is specified for the annotation */
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    Map<String, String> tagSets = [:]
+
     public IOSpecification() {}
 
     public IOSpecification(Map map) {
@@ -77,6 +81,10 @@ public class IOSpecification {
 
     void addAnnotations(String[] annotation) {
         annotations.addAll(Arrays.asList(annotation))
+    }
+
+    void addTagSet(String annType, String tagSetType) {
+        tagSets.put(annType, tagSetType)
     }
 
 //    void add(ContentType type) {
