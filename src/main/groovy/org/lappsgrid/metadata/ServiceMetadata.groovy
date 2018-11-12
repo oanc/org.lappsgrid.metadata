@@ -74,12 +74,12 @@ class  ServiceMetadata {
     String allow
 
     /**
-     * The license for this service.
+     * URL to the license for this service.
      */
     String license
 
     /**
-     * The license of the wrapped tool, if any, in restructuredtext markup format
+     * A human readable description of the license terms.  May also include markdown.
      */
     String licenseDesc
 

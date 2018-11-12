@@ -3,31 +3,17 @@ org.lappsgrid.metadata
 
 ### Build Status
 
-[![Master Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.metadata?branch=master)](https://travis-ci.org/lapps/org.lappsgrid.metadata)
-[![Develop Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.metadata?branch=develop)](https://travis-ci.org/lapps/org.lappsgrid.metadata)
+[![Master Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.metadata?branch=master)](https://travis-ci.org/lapps/org.lappsgrid.metadata) [![Develop Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.metadata?branch=develop)](https://travis-ci.org/lapps/org.lappsgrid.metadata)
+
+### Deployment
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/metadata/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/metadata)
-
-Classes used to read and write LAPPS metadata returned by the `WebService.getMetadata()` method.
-
-<b color='red'>Note:</b> currently these classes reside in the package `org.lappsgrid.experimental.lappsgrid`. They will be
-moved into the `org.lappsgrid.metadata` package after review.
-
-## Maven
-
-```xml
-<dependency>
-    <groupId>org.lappsgrid</groupId>
-    <artifactId>metadata</artifactId>
-    <version>1.1.1</version>
-</dependency>
-```
 
 ## Examples
 
 ### Creating and Writing Metadata
 
-```java
+```
 ServiceMetadata metadata = new ServiceMetaData();
 metadata.setVersion("1.0.0");
 metadata.setVendor("http://www.anc.org");
@@ -60,13 +46,13 @@ ServiceMetadata md = new ServiceMetadataBuilder()
 ```
 ### Reading Metadata
 
-```java
+```
 File file = ... /* The file containing the metadata in JSON. */
 ServiceMetadata metadata = new ServiceMetadata(file);
 System.out.println(metadata.getVendor());
 ```
 There is also a constructor that accepts a String object containing the JSON
-```java
+```
 String json = "{ ... }";
 ServiceMetadata metadata = new ServiceMetadata(json);
 System.out.println(metadata.getVendor());

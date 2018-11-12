@@ -36,6 +36,7 @@ import static org.lappsgrid.discriminator.Discriminators.Uri
  * @author Keith Suderman
  */
 class ServiceMetadataBuilder {
+    /** The metadata we will be building. */
     ServiceMetadata metadata
 
     ServiceMetadataBuilder() {
@@ -71,6 +72,11 @@ class ServiceMetadataBuilder {
         metadata.license = license
         return this
     }
+    ServiceMetadataBuilder licenseDesc(String description) {
+        metadata.licenseDesc = description
+        return this
+    }
+
     ServiceMetadataBuilder licenseDesc(String description) {
         metadata.licenseDesc = description
         return this

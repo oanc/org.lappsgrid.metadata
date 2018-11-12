@@ -106,25 +106,6 @@ public class IOSpecification {
         }
     }
 
-//    boolean satisfies(IOSpecification required) {
-//        if (required.encoding && this.encoding != required.encoding) {
-//           return false
-//        }
-//        def intersection = language.intersect(required.language)
-//        if (intersection.size() == 0) {
-//            return false
-//        }
-//
-//        intersection = format.intersect(required.format)
-//        if (intersection.size() == 0) {
-//            return false
-//        }
-//        intersection = annotations.intersect(required.annotations)
-//        if (intersection.size() != required.annotations.size()) {
-//            return false
-//        }
-//        return true
-//    }
 
     boolean equals(Object other) {
         if (other instanceof IOSpecification) {
