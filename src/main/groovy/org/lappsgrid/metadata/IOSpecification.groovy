@@ -48,6 +48,9 @@ public class IOSpecification {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     List<String> annotations = []
 
+    /** Tag sets (penn, ptb, etc) used as annotation values. */
+    Map<String,String> tagSets = [:]
+
     public IOSpecification() {}
 
     public IOSpecification(Map map) {
@@ -79,14 +82,6 @@ public class IOSpecification {
         annotations.addAll(Arrays.asList(annotation))
     }
 
-//    void add(ContentType type) {
-//        format << type
-//    }
-
-//    void add(AnnotationType type) {
-//        annotations << type
-//    }
-
     void addLanguage(String language) {
         this.language.add(language)
     }
@@ -98,25 +93,6 @@ public class IOSpecification {
         }
     }
 
-//    boolean satisfies(IOSpecification required) {
-//        if (required.encoding && this.encoding != required.encoding) {
-//           return false
-//        }
-//        def intersection = language.intersect(required.language)
-//        if (intersection.size() == 0) {
-//            return false
-//        }
-//
-//        intersection = format.intersect(required.format)
-//        if (intersection.size() == 0) {
-//            return false
-//        }
-//        intersection = annotations.intersect(required.annotations)
-//        if (intersection.size() != required.annotations.size()) {
-//            return false
-//        }
-//        return true
-//    }
 
     boolean equals(Object other) {
         if (other instanceof IOSpecification) {
