@@ -74,9 +74,14 @@ class  ServiceMetadata {
     String allow
 
     /**
-     * The license for this service.
+     * URL to the license for this service.
      */
     String license
+
+    /**
+     * A human readable description of the license terms.  May also include markdown.
+     */
+    String licenseDesc
 
     /**
      * The full URL used to invoke the service.

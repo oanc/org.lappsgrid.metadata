@@ -5,13 +5,15 @@ org.lappsgrid.metadata
 
 [![Master Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.metadata?branch=master)](https://travis-ci.org/lapps/org.lappsgrid.metadata) [![Develop Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.metadata?branch=develop)](https://travis-ci.org/lapps/org.lappsgrid.metadata)
 
+### Deployment
+
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/metadata/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/metadata)
 
 ## Examples
 
 ### Creating and Writing Metadata
 
-```java
+```
 ServiceMetadata metadata = new ServiceMetaData();
 metadata.setVersion("1.0.0");
 metadata.setVendor("http://www.anc.org");
@@ -44,13 +46,13 @@ ServiceMetadata md = new ServiceMetadataBuilder()
 ```
 ### Reading Metadata
 
-```java
+```
 File file = ... /* The file containing the metadata in JSON. */
 ServiceMetadata metadata = new ServiceMetadata(file);
 System.out.println(metadata.getVendor());
 ```
 There is also a constructor that accepts a String object containing the JSON
-```java
+```
 String json = "{ ... }";
 ServiceMetadata metadata = new ServiceMetadata(json);
 System.out.println(metadata.getVendor());
