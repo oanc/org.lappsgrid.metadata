@@ -59,6 +59,12 @@ class  ServiceMetadata {
     String version
 
     /**
+     * The version number of the tool being wrapped.  Not all LAPPS Grid tools
+     * wrap other software packages so this field is optional.
+     */
+    String toolVersion
+
+    /**
      * A plain text description of the service or the URL to an online
      * description.
      */
