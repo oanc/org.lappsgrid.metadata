@@ -39,30 +39,10 @@
         <lapps.discriminator.version>2.3.3</lapps.discriminator.version>
     </properties>
     <dependencies>
-        <!--
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        -->
         <dependency>
             <groupId>org.lappsgrid</groupId>
             <artifactId>serialization</artifactId>
             <version>${lapps.serialization.version}</version>
-            <!--
-            <exclusions>
-                <exclusion>
-                    <groupId>org.codehaus.groovy</groupId>
-                    <artifactId>groovy-all</artifactId>
-                </exclusion>
-            </exclusions>
-            -->
         </dependency>
         <dependency>
             <groupId>org.lappsgrid</groupId>
