@@ -9,7 +9,7 @@ import static org.junit.Assert.*
  */
 class ServiceMetadataTest {
 
-    @Ignore
+    @Test
     void testDefaultSchema() {
         ServiceMetadata meta = new ServiceMetadata()
         assertTrue meta.schema == ServiceMetadata.DEFAULT_SCHEMA_URL

@@ -37,10 +37,10 @@ import org.lappsgrid.serialization.Data
  */
 @CompileStatic
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder(["schema","name","version","description","vendor","allow","license", "licenseDesc","url", "parameters", "requires", "produces"])
+@JsonPropertyOrder(["schema","name","version", "toolVersion", "description","vendor","allow","license", "licenseDesc","url", "parameters", "requires", "produces"])
 class  ServiceMetadata {
 
-    public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/service-schema-1.0.0.json'
+    public static final String DEFAULT_SCHEMA_URL = 'https://vocab.lappsgrid.org/schema/1.1.0/metadata-schema.json'
 
     /** The JSON schema that describes the JSON format. */
     @JsonProperty('$schema')
@@ -57,6 +57,12 @@ class  ServiceMetadata {
      * an optional trailing qualifier. E.G. 1.1.0-SNAPSHOT
      */
     String version
+
+    /**
+     * The version number of the tool being wrapped.  Not all LAPPS Grid tools
+     * wrap other software packages so this field is optional.
+     */
+    String toolVersion
 
     /**
      * A plain text description of the service or the URL to an online
@@ -85,6 +91,7 @@ class  ServiceMetadata {
 
     /**
      * The full URL used to invoke the service.
+     * TODO Should this be deprecated since services do not know the URL they have been deployed to.
      */
     String url
 

@@ -114,4 +114,12 @@ class ServiceMetadataBuilderTests {
 
         println Serializer.toPrettyJson(md)
     }
+
+    @Test
+    void toolVersionTest() {
+        final String expected = "foo.bar.baz"
+        ServiceMetadata md = new ServiceMetadataBuilder().toolVersion(expected).build()
+        assert ServiceMetadata.DEFAULT_SCHEMA_URL == md.schema
+        assert expected == md.toolVersion
+    }
 }

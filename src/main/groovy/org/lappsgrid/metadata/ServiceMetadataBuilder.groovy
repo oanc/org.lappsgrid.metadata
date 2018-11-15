@@ -63,6 +63,11 @@ class ServiceMetadataBuilder {
         return this
     }
 
+    ServiceMetadataBuilder toolVersion(String version) {
+        metadata.toolVersion = version
+        return this
+    }
+
     ServiceMetadataBuilder allow(String allow) {
         metadata.allow = allow
         return this
