@@ -37,7 +37,7 @@ import org.lappsgrid.serialization.Data
  */
 @CompileStatic
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder(["schema","name","version","description","vendor","allow","license", "licenseDesc","url", "parameters", "requires", "produces"])
+@JsonPropertyOrder(["schema","name","version", "toolVersion", "description","vendor","allow","license", "licenseDesc","url", "parameters", "requires", "produces"])
 class  ServiceMetadata {
 
     public static final String DEFAULT_SCHEMA_URL = 'https://vocab.lappsgrid.org/schema/1.1.0/metadata-schema.json'
@@ -91,6 +91,7 @@ class  ServiceMetadata {
 
     /**
      * The full URL used to invoke the service.
+     * TODO Should this be deprecated since services do not know the URL they have been deployed to.
      */
     String url
 
