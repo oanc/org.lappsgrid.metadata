@@ -18,6 +18,7 @@ package org.lappsgrid.metadata
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import groovy.transform.CompileStatic
+import org.lappsgrid.discriminator.DiscriminatorRegistry
 
 /**
  * Defines the sets of annotations, and their properties, exchanged by Lapps
@@ -59,6 +60,7 @@ public class IOSpecification {
         map.language?.each { language.add(it.toString()) }
         map.format?.each { format.add(it.toString()) }
         map.annotations?.each { annotations << it.toString()}
+        map.tagSets?.each { Map.Entry e -> this.tagSets.put(e.key.toString(), e.value.toString()) }
     }
 
     void addFormat(String format) {
@@ -84,7 +86,52 @@ public class IOSpecification {
     }
 
     void addTagSet(String annType, String tagSetType) {
-        tagSets.put(annType, tagSetType)
+        String type = null;
+        if (annType.startsWith("http")) {
+            type = annType
+        }
+        else {
+            if (annType.contains("#")) {
+                String[] parts = annType.split("#")
+                type = DiscriminatorRegistry.getUri(parts[0])
+                if (type == null) {
+                    type = annType
+                }
+                else {
+                    type = type + "#" + parts[1]
+                }
+            }
+            else {
+                type = DiscriminatorRegistry.getUri(annType)
+                if (type == null) {
+                    type = annType
+                }
+            }
+        }
+
+        String tagset = null
+        if (tagSetType.startsWith("http")) {
+            tagset = tagSetType
+        }
+        else {
+            if (tagSetType.contains("#")) {
+                String[] parts = tagSetType.split("#")
+                tagset = DiscriminatorRegistry.getUri(parts[0])
+                if (tagset == null) {
+                    tagset = annType
+                }
+                else {
+                    tagset = tagset + "#" + parts[1]
+                }
+            }
+            else {
+                tagset = DiscriminatorRegistry.getUri(tagSetType)
+                if (tagset == null) {
+                    tagset = tagSetType
+                }
+            }
+        }
+        tagSets.put(type, tagset)
     }
 
 //    void add(ContentType type) {
