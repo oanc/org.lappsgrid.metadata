@@ -102,6 +102,11 @@ class ServiceMetadataBuilder {
         return this
     }
 
+    ServiceMetadataBuilder produceTagSet(String annotation, String tagset) {
+        metadata.produces.addTagSet(annotation, tagset)
+        return this
+    }
+
     ServiceMetadataBuilder produceLanguage(String lang) {
         metadata.produces.addLanguage(lang)
         return this
@@ -150,6 +155,11 @@ class ServiceMetadataBuilder {
 
     ServiceMetadataBuilder requireLanguages(String[] langs) {
         metadata.requires.addLanguages(langs)
+        return this
+    }
+
+    ServiceMetadataBuilder requireTagSet(String annotation, String tagset) {
+        metadata.requires.addTagSet(annotation, tagset)
         return this
     }
 
