@@ -36,6 +36,7 @@ import static org.lappsgrid.discriminator.Discriminators.Uri
  * @author Keith Suderman
  */
 class ServiceMetadataBuilder {
+    /** The metadata we will be building. */
     ServiceMetadata metadata
 
     ServiceMetadataBuilder() {
@@ -62,6 +63,11 @@ class ServiceMetadataBuilder {
         return this
     }
 
+    ServiceMetadataBuilder toolVersion(String version) {
+        metadata.toolVersion = version
+        return this
+    }
+
     ServiceMetadataBuilder allow(String allow) {
         metadata.allow = allow
         return this
@@ -69,6 +75,10 @@ class ServiceMetadataBuilder {
 
     ServiceMetadataBuilder license(String license) {
         metadata.license = license
+        return this
+    }
+    ServiceMetadataBuilder licenseDesc(String description) {
+        metadata.licenseDesc = description
         return this
     }
 
@@ -94,6 +104,11 @@ class ServiceMetadataBuilder {
 
     ServiceMetadataBuilder produceFormats(String[] formats) {
         metadata.produces.addFormats(formats)
+        return this
+    }
+
+    ServiceMetadataBuilder produceTagSet(String annotation, String tagset) {
+        metadata.produces.addTagSet(annotation, tagset)
         return this
     }
 
@@ -145,6 +160,11 @@ class ServiceMetadataBuilder {
 
     ServiceMetadataBuilder requireLanguages(String[] langs) {
         metadata.requires.addLanguages(langs)
+        return this
+    }
+
+    ServiceMetadataBuilder requireTagSet(String annotation, String tagset) {
+        metadata.requires.addTagSet(annotation, tagset)
         return this
     }
 

@@ -38,7 +38,7 @@ import org.lappsgrid.serialization.Data
  */
 @CompileStatic
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder(["schema","name","version","description","vendor","allow","license"])
+@JsonPropertyOrder(["schema","name","version","description","vendor","allow","license", "licenseDesc"])
 class DataSourceMetadata {
     public static final String DEFAULT_SCHEMA_URL = 'http://vocab.lappsgrid.org/schema/datasource-schema-1.0.0.json'
 
@@ -73,6 +73,9 @@ class DataSourceMetadata {
      */
     String license
 
+    /** * The license of the wrapped tool, if any, in restructuredtext markup format */
+    String licenseDesc
+
     /** Languages available from the data source. */
     List<String> language
 
@@ -98,6 +101,7 @@ class DataSourceMetadata {
         this.description = map.description
         this.allow = map.allow
         this.license = map.license
+        this.licenseDesc = map.licenseDesc
         this.language = (List) map.language
         this.format = (List) map.format
         this.encoding = map.encoding

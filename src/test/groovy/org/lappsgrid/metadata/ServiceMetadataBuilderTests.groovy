@@ -17,6 +17,9 @@
 package org.lappsgrid.metadata
 
 import org.junit.Test
+import org.lappsgrid.serialization.Serializer
+
+import static org.lappsgrid.discriminator.Discriminators.*
 
 /**
  * @author Keith Suderman
@@ -71,5 +74,52 @@ class ServiceMetadataBuilderTests {
         assert 't2' == md.requires.annotations[1]
         assert 't3' == md.requires.annotations[2]
 
+    }
+
+    @Test
+    void requiresTagSetByAlias() {
+        ServiceMetadata md = new ServiceMetadataBuilder()
+                .requireTagSet(Uri.POS, Alias.TAGS_POS_PENNTB)
+                .build()
+
+        assert 1 == md.requires.tagSets.size()
+        assert md.requires.tagSets.containsKey(Uri.POS)
+        assert Uri.TAGS_POS_PENNTB == md.requires.tagSets.get(Uri.POS)
+        assert 0 == md.produces.tagSets.size()
+    }
+
+    @Test
+    void requiresTagSetByUri() {
+        ServiceMetadata md = new ServiceMetadataBuilder()
+                .requireTagSet(Uri.POS, Uri.TAGS_POS_PENNTB)
+                .build()
+
+        assert 1 == md.requires.tagSets.size()
+        assert md.requires.tagSets.containsKey(Uri.POS)
+        assert Uri.TAGS_POS_PENNTB == md.requires.tagSets.get(Uri.POS)
+        assert 0 == md.produces.tagSets.size()
+    }
+
+    @Test
+    void producesTagSets() {
+        ServiceMetadata md = new ServiceMetadataBuilder()
+                .produceTagSet(Uri.POS, Alias.TAGS_POS_PENNTB)
+                .produceTagSet(Uri.NE, Alias.TAGS_NER_OPENNLP)
+                .build()
+
+        assert 0 == md.requires.tagSets.size()
+        assert 2 == md.produces.tagSets.size()
+        assert Uri.TAGS_POS_PENNTB == md.produces.tagSets.get(Uri.POS)
+        assert Uri.TAGS_NER_OPENNLP == md.produces.tagSets.get(Uri.NE)
+
+        println Serializer.toPrettyJson(md)
+    }
+
+    @Test
+    void toolVersionTest() {
+        final String expected = "foo.bar.baz"
+        ServiceMetadata md = new ServiceMetadataBuilder().toolVersion(expected).build()
+        assert ServiceMetadata.DEFAULT_SCHEMA_URL == md.schema
+        assert expected == md.toolVersion
     }
 }

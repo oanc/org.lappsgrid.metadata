@@ -1,6 +1,10 @@
 package org.lappsgrid.metadata
 
 import org.junit.*
+import org.lappsgrid.discriminator.Discriminator
+import org.lappsgrid.discriminator.Discriminators
+
+import static org.lappsgrid.discriminator.Discriminators.*
 
 import static org.junit.Assert.*
 
@@ -86,6 +90,24 @@ class IOSpecificationTest {
         spec.addFormat("ascii")
         assertTrue 2 == spec.format.size()
         assertTrue "ascii" == spec.format[1]
+    }
+
+    @Test
+    void testUnknownTagSet() {
+        IOSpecification spec = newSpec(TEXT, TOKEN);
+        spec.addTagSet(TOKEN, "upenn")
+        assertEquals(spec.tagSets.size(), 1)
+        assertEquals(spec.tagSets.containsKey(Uri.TOKEN), true)
+        assertEquals(spec.tagSets.get(Uri.TOKEN), "upenn")
+
+    }
+
+    @Test
+    void testTagSet() {
+        IOSpecification spec = newSpec(TEXT, Uri.POS)
+        spec.addTagSet(Uri.POS, Discriminators.Alias.TAGS_POS_PENNTB)
+        assertEquals(1, spec.tagSets.size())
+        assertEquals(Uri.TAGS_POS_PENNTB, spec.tagSets.get(Uri.POS))
     }
 
     IOSpecification newSpec(String encoding, String language, String contentType, String annotationType) {

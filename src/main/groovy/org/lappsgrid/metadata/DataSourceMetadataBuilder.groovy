@@ -60,6 +60,11 @@ class DataSourceMetadataBuilder {
         return this
     }
 
+    DataSourceMetadataBuilder licenseDesc(String description) {
+        metadata.licenseDesc = description
+        return this
+    }
+
     DataSourceMetadataBuilder language(String language) {
         metadata.addLanguage(language)
         return this
