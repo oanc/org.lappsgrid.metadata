@@ -1,5 +1,6 @@
 package org.lappsgrid.metadata
 
+import groovy.transform.CompileStatic
 import org.lappsgrid.discriminator.Discriminators
 import org.lappsgrid.serialization.Data
 
@@ -18,6 +19,7 @@ import org.lappsgrid.serialization.Data
  *
  * @author Keith Suderman
  */
+@CompileStatic
 class DataSourceMetadataBuilder {
     private DataSourceMetadata metadata;
 
