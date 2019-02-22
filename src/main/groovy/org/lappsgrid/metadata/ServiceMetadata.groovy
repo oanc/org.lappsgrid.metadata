@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.transform.CompileStatic
 import org.lappsgrid.discriminator.Discriminators
 import org.lappsgrid.serialization.Data
+import org.lappsgrid.serialization.Serializer
 
 /**
  * The JSON objects returned by calls to
@@ -123,16 +124,15 @@ class  ServiceMetadata {
      */
     IOSpecification requires = new IOSpecification()
 
-    public ServiceMetadata() {
+    ServiceMetadata() {
         this.schema = DEFAULT_SCHEMA_URL
     }
-//
-//    public ServiceMetadata(File file) {
-//        this(file.text)
-//    }
-//
 
-    public ServiceMetadata(Map map) {
+    ServiceMetadata(String json) {
+        this(Serializer.parse(json, HashMap))
+    }
+
+    ServiceMetadata(Map map) {
         this.schema = map.schema
         this.name = map.name
         this.vendor = map.vendor

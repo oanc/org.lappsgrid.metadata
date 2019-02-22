@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.transform.CompileStatic
 import org.lappsgrid.discriminator.Discriminators
 import org.lappsgrid.serialization.Data
+import org.lappsgrid.serialization.Serializer
 
 /**
  * The JSON objects returned by calls to
@@ -88,11 +89,15 @@ class DataSourceMetadata {
 
     String encoding
 
-    public DataSourceMetadata() {
+    DataSourceMetadata() {
         this.schema = DEFAULT_SCHEMA_URL
     }
 
-    public DataSourceMetadata(Map map)
+    DataSourceMetadata(String json) {
+        this(Serializer.parse(json, Map))
+    }
+
+    DataSourceMetadata(Map map)
     {
         this.schema = map.schema
         this.name = map.name
