@@ -149,7 +149,7 @@ class  ServiceMetadata {
     }
 
     private void mapConstructor(Map map) {
-        this.schema = map.schema
+        this.schema = map['$schema']
         this.name = map.name
         this.vendor = map.vendor
         this.version = map.version
