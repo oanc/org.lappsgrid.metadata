@@ -93,12 +93,27 @@ class DataSourceMetadata {
         this.schema = DEFAULT_SCHEMA_URL
     }
 
-    DataSourceMetadata(String json) {
-        this(Serializer.parse(json, Map))
+    DataSourceMetadata(Object object) throws UnsupportedOperationException {
+        if (object instanceof String) {
+            mapConstructor(Serializer.parse(object.toString(), HashMap))
+        }
+        else if (object instanceof Map) {
+            mapConstructor((Map) object)
+        }
+        else {
+            throw new UnsupportedOperationException("Invalid object type for constructor.")
+        }
     }
 
-    DataSourceMetadata(Map map)
-    {
+    DataSourceMetadata(String json) {
+        mapConstructor(Serializer.parse(json, Map))
+    }
+
+    DataSourceMetadata(Map map) {
+        mapConstructor(map)
+    }
+
+    private void mapConstructor(Map map) {
         this.schema = map.schema
         this.name = map.name
         this.vendor = map.vendor
