@@ -153,6 +153,7 @@ class  ServiceMetadata {
         this.name = map.name
         this.vendor = map.vendor
         this.version = map.version
+        this.toolVersion = map.toolVersion
         this.description = map.description
         this.allow = map.allow
         this.license = map.license
