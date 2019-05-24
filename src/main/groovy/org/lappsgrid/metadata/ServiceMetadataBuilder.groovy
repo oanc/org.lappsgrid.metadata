@@ -16,6 +16,7 @@
  */
 package org.lappsgrid.metadata
 
+import groovy.transform.CompileStatic
 import org.lappsgrid.serialization.Data
 import org.lappsgrid.serialization.Serializer
 import static org.lappsgrid.discriminator.Discriminators.Uri
@@ -35,6 +36,7 @@ import static org.lappsgrid.discriminator.Discriminators.Uri
  *
  * @author Keith Suderman
  */
+@CompileStatic
 class ServiceMetadataBuilder {
     /** The metadata we will be building. */
     ServiceMetadata metadata

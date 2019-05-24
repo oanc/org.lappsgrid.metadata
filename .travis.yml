@@ -13,6 +13,8 @@ env:
   - secure: bAJW+nMfMCJ5cvVn1HtWCqI+AhLGnHuUx5ss6hyhm4L/Jd36cctLSNWv9FrpF2Eq/8r1J/RT/2mxm6b5nByBEaIzo+F1wc8+SNPTa0c+odjbTNTP9ViYtKP+JEKvgLfclW0asiae7TtffyjeXQJdKWdRIgGxpq2+/Kcr7jnRq9Y=
 before_install:
 - chmod a+x ./deploy.sh
+install:
+- mvn --settings settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
 - mvn clean test --settings settings.xml
 after_success:

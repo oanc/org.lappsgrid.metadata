@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import groovy.transform.CompileStatic
 import org.lappsgrid.discriminator.Discriminators
 import org.lappsgrid.serialization.Data
+import org.lappsgrid.serialization.Serializer
 
 /**
  * The JSON objects returned by calls to
@@ -88,12 +89,31 @@ class DataSourceMetadata {
 
     String encoding
 
-    public DataSourceMetadata() {
+    DataSourceMetadata() {
         this.schema = DEFAULT_SCHEMA_URL
     }
 
-    public DataSourceMetadata(Map map)
-    {
+    DataSourceMetadata(Object object) throws UnsupportedOperationException {
+        if (object instanceof String) {
+            mapConstructor(Serializer.parse(object.toString(), HashMap))
+        }
+        else if (object instanceof Map) {
+            mapConstructor((Map) object)
+        }
+        else {
+            throw new UnsupportedOperationException("Invalid object type for constructor.")
+        }
+    }
+
+    DataSourceMetadata(String json) {
+        mapConstructor(Serializer.parse(json, Map))
+    }
+
+    DataSourceMetadata(Map map) {
+        mapConstructor(map)
+    }
+
+    private void mapConstructor(Map map) {
         this.schema = map.schema
         this.name = map.name
         this.vendor = map.vendor
