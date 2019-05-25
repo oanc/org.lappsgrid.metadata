@@ -14,8 +14,8 @@ env:
 before_install:
 - chmod a+x ./deploy.sh
 install:
-- mvn --settings settings.xml install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- mvn --settings settings.xml -Prelease -DskipTests=true -Dmaven.javadoc.skip=true -B -V install
 script:
-- mvn clean test --settings settings.xml
+- mvn clean test -Prelease --settings settings.xml
 after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ] ; then ./deploy.sh ; fi
