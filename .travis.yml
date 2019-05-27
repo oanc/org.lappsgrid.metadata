@@ -1,21 +1,38 @@
-language: groovy
+language: java
 branches:
   only:
-  - master
   - develop
+  - master
+  - "/release.*/"
 env:
   global:
-  - secure: TayEP5vUCUMB9RWOai2vvgyMkiZwEBfUG/lluEJCO01uTjLDvT46G7HtCKbV4IXL1oALtVXpiGvWc9BVPAafLyAcq3DU4wCt3ETadInTYhs+xQFDK7xc9shF58KSQKwwPRdzY2z4FWt/BrylauBwQf0fCMZN1ioPD0MdLaBCe1w=
-  - secure: Q8KvVcyZKN4ikBArY8KNL3GGH+CdFj4bD4XSRr4ZMplWJwR2pp6qsnfaH09ZQbThZikyWXLgL03aLJhyObjtY42QKBXMkyR++1dEpXaY+AWWJ+fRHu7gA05KYTcAFzaaPBcsp31zLpqclu7Md7HzgolGEi6YlZveK02ogEGHufo=
-  - secure: hzYbi3GDszq0rbpSCeai0tU8Xcu4VLLnPQjU7qbli+Y80yvBSasB7LCZC3rVs1RL6olFl1lAhbF4DbnUszDiq0wWpwZDD9Dqt1oPrqfUpsgt1spQmpjnlw3F6jXH22JlwkNDr+pBobuc2TN6iPQRE+ziku6pQaYKAIVUV4UQZN4=
-  - secure: LU8pcBzayf+SzNjIooom+S8ygAu6oIR+vb0UQQrnU8sAOzkwF6BXKN9ekKGDZ4Mvmufr6GCSwh9zrsnt6MAu52NmOvB4eMfb+6L103vapylJJERxgMrI8YZJ/4ks25yvlaM/37mNGP4Xv60QLykGmY9SGT6VOdJvzIWPCelK2uE=
-  - secure: Lq7BGqu3QgOzzuLScNB7Tlyz0Pr5NizUScDXgAd6OpuP6PsAoeoZOUkS+geHMmAXyH7l5JygIZzbGuOMQIOrN0hrCcRtGiIxclHYXHRjN8Podzdg8hRXNncjAg5zp2pqkeRTLNs08ZJTL5SON4PazVLbCZ7dYasvA0INQ5O2b1Y=
-  - secure: bAJW+nMfMCJ5cvVn1HtWCqI+AhLGnHuUx5ss6hyhm4L/Jd36cctLSNWv9FrpF2Eq/8r1J/RT/2mxm6b5nByBEaIzo+F1wc8+SNPTa0c+odjbTNTP9ViYtKP+JEKvgLfclW0asiae7TtffyjeXQJdKWdRIgGxpq2+/Kcr7jnRq9Y=
-before_install:
-- chmod a+x ./deploy.sh
-install:
-- mvn --settings settings.xml -Prelease -DskipTests=true -Dmaven.javadoc.skip=true -B -V install
-script:
-- mvn clean test -Prelease --settings settings.xml
-after_success:
-- if [ "$TRAVIS_BRANCH" == "master" ] ; then ./deploy.sh ; fi
+  - secure: UWkJueXpx/ibE29FPUQm4QaksioKyDEBCYvYtzGArwzZNUvM/859sx9reQ+6tZ3yhR0RdojuXfHd7jDi7Sbn0AoZyQX+qJdZ/OoB9JVU0Q4FOH4UfyC5LZayUXjfXyrS0b2CNF5M0i0Xsgm5X6AydNwcetORLdnwOLcgPrI2Ffc=
+  - secure: f0QkVGRW2rCVwrzvZ1YIEBidEwdjJlGAO8g66S+GCfdEBBIbniRQ6UPbjIwf+x58w20ruiC9N7VpeVLt1M9+GbfhSccwuggwMG/hA5ZalTV2zxWy13fyxPxb4id3RvgRL9JoM9K4qCyzWOR/d+ud7IE3f6dVRVIqhrzkxxOzOd8=
+  - secure: Gc9exYH1HPZc84t7e6K97aUVpHql8IdEEoIfCpa49Z4fi4WZoPERzkX4R0noZu6B5y49xcD4GiH27qSCdOSTNJqQ7kLBZ3o5bcGuiv+pTThu7mxq5vC6wOAOhprd3OSNLRQG2hLM291q6hS8wxJOoHNf1TTu2ZtqGXXVYUGhkkY=
+  - secure: XMr5Tfyh6wJmB/Avf21ptZ+Gl/wo4kZIkdvmgrEpjsfAbh/GHjIHiF69Eg5dOxRjN/MnDM4cfWOEE5v3vD9J1nLgra7GSM5Km+oR8I705C2ZmCnGGpl9iTBDTPJVIx6zOJjcZVOY1GhNacl1tw3BtaqPpFDR9O2coLUqR9CIRKI=
+  - secure: UMzgXB9fYjpFQdzCzICW5qiK5H+0jc7qJsw3Bwj51ErD3zTlzEZTu/qOsOMxaAA9AIVEJ4FVMPNuiiSBzTfzOJKn48oFIy3EkyfgSPzHpf8EqW5hKSge6/b/nSLq7vuN385gBcB4plup9SoDU3V44jW5/90s03Vdh5jrZnP4Wgw=
+  - secure: X8xWr8cBFQh3FAN/7/0gql/MTAH3ACGSSpWJGhp482CvjqgMapzhb8OrfZ3NIdTLenb+M7MDEHk3FYhSFXy4Hv/qbDGJDFS3mYY6sS3idVlrC/XiMBJDD4sIMsBXGg8P/pXze+7rIudJ+abCjRjsoqAaoV/JZSIq4sqRfRRb+WA=
+stages:
+- name: Unit Tests
+  if: branch = develop
+- name: Staging
+  if: branch =~ ^release
+- name: Master
+  if: branch = master
+jobs:
+  include:
+  - stage: Unit Tests
+    install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true
+      -Pdevelop -B -V install
+    script: mvn --settings settings.xml -Pdevelop clean test
+  - stage: Staging
+    before-install: chmod +x ./deploy.sh
+    install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true
+      -Pstaging -B -V install
+    script: mvn --settings settings.xml -Dmaven.javadoc.skip=true -Pstaging -B -V
+      clean test
+    after_success: ./deploy.sh
+  - stage: Master
+    install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true
+      -B -V install
+    script: mvn --settings settings.xml clean test site
